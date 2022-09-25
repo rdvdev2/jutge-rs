@@ -111,10 +111,16 @@ impl FromStr for ProblemId {
     type Err = Error;
 
     fn from_str(s: &str) -> Result<Self> {
-        if s.len() != 7 { return Err(Error::InvalidProblemId("string should be 7 characters long".into())) }
+        if s.len() != 7 {
+            return Err(Error::InvalidProblemId(
+                "string should be 7 characters long".into(),
+            ));
+        }
 
         let pt = s.chars().next().unwrap().try_into()?;
-        let id = s[1..=6].parse().map_err(|_| Error::InvalidProblemId("last 6 characters should be numeric".into()))?;
+        let id = s[1..=6]
+            .parse()
+            .map_err(|_| Error::InvalidProblemId("last 6 characters should be numeric".into()))?;
 
         Self::new(pt, id)
     }
