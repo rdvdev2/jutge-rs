@@ -6,9 +6,10 @@ pub type Result<T> = std::result::Result<T, Error>;
 /// The errors produced by the crate.
 #[derive(Error, Debug)]
 pub enum Error {
-    /// Wraps arround errors in the [`reqwest`] crate.
-    #[error("reqwest error: {0}")]
-    ReqwestError(#[from] reqwest::Error),
+    /// Wraps arround errors in the [`ureq`] crate.
+    #[cfg(feature="dep:ureq")]
+    #[error("ureq error: {0}")]
+    UreqError(#[from] ureq::Error),
 
     /// Indicates an impossible conversion from a `char` to a
     /// [`ProblemType`](crate::ProblemType)

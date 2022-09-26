@@ -7,10 +7,24 @@
 #![deny(clippy::pedantic)]
 #![allow(clippy::module_name_repetitions)]
 
-mod client;
-mod error;
-mod problem;
+macro_rules! modules {
+    ($($mod:ident),+; $($feature:literal => $($f_mod:ident),+);*;) => {
+        $(
+            mod $mod;
+            pub use $mod::*;
+            )+
+        $(
+            $(
+                #[cfg(feature=$feature)]
+                mod $f_mod;
+                #[cfg(feature=$feature)]
+                pub use $f_mod::*;
+                )+
+            )*
+    };
+}
 
-pub use client::*;
-pub use error::*;
-pub use problem::*;
+modules! {
+    error, problem;
+    "web-client" => client;
+}
