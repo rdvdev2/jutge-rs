@@ -1,10 +1,10 @@
 //! A library crate for easy and idiomatic interaction with
 //! <https://jutge.org>
 
-#![deny(missing_docs)]
+#![warn(missing_docs)]
 #![deny(unsafe_code)]
-#![deny(clippy::all)]
-#![deny(clippy::pedantic)]
+#![warn(clippy::all)]
+#![warn(clippy::pedantic)]
 #![allow(clippy::module_name_repetitions)]
 
 macro_rules! modules {
