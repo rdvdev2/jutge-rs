@@ -12,3 +12,5 @@ web-client = ["dep:ureq"]
 [dependencies]
 ureq = { version = "2.5", features = ["cookies"], optional = true }
 thiserror = "1.0.35"
+const-str = "0.1.4"
+sealed = "0.4"

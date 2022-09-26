@@ -12,9 +12,14 @@ pub enum Error {
     UreqError(#[from] ureq::Error),
 
     /// Indicates an impossible conversion from a `char` to a
-    /// [`ProblemType`](crate::ProblemType)
+    /// [`ProblemType`](crate::ProblemType).
     #[error("char doesn't represent a valid problem type")]
     NotAProblemType,
+
+    /// Indicates an impossible conversion from a char array to a
+    /// [`ProblemLanguage`](crate::ProblemLanguage).
+    #[error("chars don't represent a valid problem language")]
+    NotAProblemLanguage,
 
     /// Indicates that a [`ProblemId`](crate::ProblemId) couldn't be created
     /// because the given inputs don't constitute a valid problem id.
